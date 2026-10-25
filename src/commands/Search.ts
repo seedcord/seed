@@ -1,4 +1,5 @@
 import { BuilderComponent, RegisterCommand } from '@seedcord/http';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
 @RegisterCommand()
 export class Search extends BuilderComponent<'command'> {
@@ -9,7 +10,13 @@ export class Search extends BuilderComponent<'command'> {
             .setName('search')
             .setDescription('Search for symbols or documentation')
             .addSubcommand(new SubSearch('docs', 'Search the reference docs').component)
-            .addSubcommand(new SubSearch('guide', 'Search the guide').component);
+            .addSubcommand(new SubSearch('guide', 'Search the guide').component)
+            .setContexts(
+                InteractionContextType.BotDM,
+                InteractionContextType.Guild,
+                InteractionContextType.PrivateChannel
+            )
+            .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall);
     }
 }
 

@@ -34,7 +34,7 @@ export class GuideSearch extends SlashHandler<'search/guide' | 'search/docs'> {
         }
 
         let output = '';
-        if (ping) output = `<@${ping.id}>\n`;
+        if (ping) output = `<@${ping.id}> `;
         output = output + url;
 
         await this.api.interactions.reply(this.event.id, this.event.token, {
