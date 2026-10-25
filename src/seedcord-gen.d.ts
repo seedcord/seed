@@ -9,7 +9,6 @@ declare module '@seedcord/http' {
         search: (typeof Bot)['search'];
     }
     interface SlashRegistry {
-        ping: { options: { detailed: { kind: 'boolean'; required: false } }; cache: 'cached' };
         'search/docs': { options: { query: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false } }; cache: 'cached' };
         'search/guide': { options: { query: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false } }; cache: 'cached' };
     }
