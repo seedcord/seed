@@ -28,6 +28,7 @@
         "@seedcord/tsconfig": "^3.0.0",
         "@types/node": "^26.6.5",
         "cf": "1.0.0-beta.17",
+        "discord-api-types": "^0.38.57",
         "eslint": "^10.13.0",
         "jiti": "^2.7.0",
         "prettier": "^3.9.10",
@@ -37,6 +38,7 @@
     },
     "dependencies": {
         "@discordjs/builders": "^1.14.1",
+        "@seedcord/docs-search": "./seedcord-docs-search-0.0.0.tgz",
         "@seedcord/http": "^0.11.0",
         "envapt": "^9.2.0"
     }

@@ -1,7 +1,7 @@
 import { Seedcord } from '@seedcord/http';
 import { Converters, Envapter } from 'envapt';
 
-import { Uptime } from '#plugins/Uptime';
+import { Search } from './plugins/Search';
 
 export const seedcord = new Seedcord({
     bot: {
@@ -20,6 +20,6 @@ export const seedcord = new Seedcord({
     notifications: {
         developerUsername: 'materwelonDhruv'
     }
-}).attach('uptime', Uptime);
+}).attach('search', Search);
 
 export default seedcord;

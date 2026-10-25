@@ -9,5 +9,10 @@
     "files.readonlyInclude": {
         "**/seedcord-gen.d.ts": true,
         "**/.seedcord/**": true
-    }
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "js/ts.experimental.useTsgo": true
 }

@@ -12,3 +12,5 @@ dist/
 .dev.vars*
 
 .DS_Store
+
+**/temp.ts
