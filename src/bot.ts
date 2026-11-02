@@ -11,6 +11,14 @@ export default new Seedcord({
         commands: {
             path: './commands',
             guilds: Envapter.getAs('TESTING_GUILD_IDS', Converters.array(), [])
+        },
+        emojis: {
+            Core: 'core',
+            Libs: 'libs',
+            Plugins: 'plugins',
+            Tools: 'tools',
+            Latest: 'latest',
+            Next: 'next'
         }
     },
     subscribers: {

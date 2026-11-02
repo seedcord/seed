@@ -13,6 +13,11 @@ Both commands reply only to you by default, and each one allows 10 uses a minute
 - `ping`: mentions someone in the reply.
 - `suppress-embed`: wraps the link in `<>` to hide its preview.
 
+Two more commands:
+
+- `/versions`: shows the latest and next version of each seedcord package and when each was released. Each version links to its npmx page.
+- `Answer with docs`: right-click a message to pick a guide section that answers it. The bot posts the section's link and mentions the message's author.
+
 To manage emojis:
 
 - `Add as Server Emoji` and `Add as App Emoji`: right-click a message to add its images as emojis, each named after its file.

@@ -13,6 +13,7 @@ declare module '@seedcord/http' {
         'delete-server-emojis': { options: {}; cache: 'cached' };
         'search/docs': { options: { query: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false }; 'suppress-embed': { kind: 'boolean'; required: false }; kind: { kind: 'string'; required: false; choices: ['all', 'class', 'interface', 'type', 'enum', 'function', 'variable', 'member'] }; transport: { kind: 'string'; required: false; choices: ['http', 'gateway'] } }; cache: undefined };
         'search/guide': { options: { question: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false }; 'suppress-embed': { kind: 'boolean'; required: false } }; cache: undefined };
+        versions: { options: {}; cache: undefined };
     }
     interface UserContextMenuRegistry {
 
@@ -23,7 +24,12 @@ declare module '@seedcord/http' {
         'Answer with docs': { cache: undefined };
     }
     interface EmojiMap {
-
+        Core: 'application';
+        Latest: 'application';
+        Libs: 'application';
+        Next: 'application';
+        Plugins: 'application';
+        Tools: 'application';
     }
 }
 
