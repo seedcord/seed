@@ -1,17 +1,12 @@
 import { parseQuestion } from '@seedcord/docs-search';
 import { AutocompleteHandler, AutocompleteRoute } from '@seedcord/http';
 
+import { CHOICE_MAX_LENGTH, fitChoiceName, sectionName } from '#lib/text';
+
 import type { GuideResult, ReferenceSearchResult, SearchResultKind } from '@seedcord/docs-search';
 import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v10';
 
-const CHOICE_MAX_LENGTH = 100;
-
 const INSTANCE_MEMBER_KINDS = new Set<SearchResultKind>(['constructor', 'method', 'property']);
-
-function fitChoiceName(name: string): string {
-    if (name.length <= CHOICE_MAX_LENGTH) return name;
-    return `${name.slice(0, CHOICE_MAX_LENGTH - 1).replace(/\s+\S*$/, '')}…`;
-}
 
 function askChoices(input: string): APIApplicationCommandOptionChoice<string>[] {
     const question = parseQuestion(input);
@@ -33,8 +28,8 @@ function docsChoice(result: ReferenceSearchResult): APIApplicationCommandOptionC
     };
 }
 
-function guideChoice({ page, heading, path }: GuideResult): APIApplicationCommandOptionChoice<string> {
-    return { name: fitChoiceName(heading ? `${page} › ${heading}` : page), value: path };
+function guideChoice(section: GuideResult): APIApplicationCommandOptionChoice<string> {
+    return { name: sectionName(section), value: section.path };
 }
 
 @AutocompleteRoute('search/docs')

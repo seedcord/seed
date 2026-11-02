@@ -1,5 +1,7 @@
-import { Cooldown, Gated, SlashHandler, SlashRoute, currentTime } from '@seedcord/http';
+import { Cooldown, Gated, SlashHandler, SlashRoute } from '@seedcord/http';
 import { MessageFlags } from 'discord-api-types/payloads';
+
+import { outOfAllowanceNotice } from '#lib/text';
 
 import type { GuideAnswer, ReferenceSearchResult } from '@seedcord/docs-search';
 
@@ -19,8 +21,7 @@ export class Search extends SlashHandler<'search/guide' | 'search/docs'> {
         });
 
         if ('retryAfterSeconds' in answer) {
-            const retryAt = currentTime() + answer.retryAfterSeconds;
-            await this.reply(`The guide search is out of its daily allowance. Try again <t:${retryAt}:R>.`);
+            await this.reply(outOfAllowanceNotice(answer.retryAfterSeconds));
             return;
         }
 
@@ -34,6 +35,7 @@ export class Search extends SlashHandler<'search/guide' | 'search/docs'> {
         const url = this.options.getBoolean('suppress-embed') ? `<${link}>` : link;
         const ping = this.options.getUser('ping');
 
+        // sending content because i need the link to embed
         await this.api.interactions.reply(this.event.id, this.event.token, {
             content: ping ? `<@${ping.id}> ${url}` : url,
             flags: this.options.getBoolean('public') ? undefined : MessageFlags.Ephemeral

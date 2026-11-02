@@ -61,9 +61,13 @@ export class Search extends Plugin {
         return matches.match(query);
     }
 
-    public async guideAnswer(query: string): Promise<GuideAnswer> {
+    public async guideSection(path: string): Promise<GuideResult | undefined> {
         const { byPath } = await this.guideIndex();
-        const picked = byPath.get(query);
+        return byPath.get(path);
+    }
+
+    public async guideAnswer(query: string): Promise<GuideAnswer> {
+        const picked = await this.guideSection(query);
         if (picked) return { hits: [picked] };
 
         const question = parseQuestion(query);

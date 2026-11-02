@@ -16,7 +16,7 @@ declare module '@seedcord/http' {
 
     }
     interface MessageContextMenuRegistry {
-
+        'Answer with docs': { cache: undefined };
     }
     interface EmojiMap {
 
