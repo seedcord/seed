@@ -10,7 +10,11 @@ export default defineConfig(({ mode = 'production' }) => ({
             UNKNOWN_EXCEPTION_WEBHOOK_URL: bindings.secret(),
             HANDLED_EXCEPTION_WEBHOOK_URL: bindings.secret(),
             TESTING_GUILD_IDS: bindings.secret(),
-            ENV: bindings.text(mode)
+            ENV: bindings.text(mode),
+            GUIDE: bindings.worker({
+                worker: mode === 'production' ? 'seedcord-guide' : 'seedcord-guide-next',
+                dev: { remote: mode !== 'production' }
+            })
         }
     }
 }));

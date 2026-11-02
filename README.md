@@ -1,35 +1,27 @@
 # seed
 
-A Discord bot built with [seedcord](https://seedcord.org) on the http transport, running on Cloudflare Workers.
+A Discord bot that searches the [seedcord](https://seedcord.org) guide and reference docs. It runs on Cloudflare Workers, and you can add it to a server or install it on your account.
+
+## Commands
+
+- `/search guide`: ask a question in your own words, or pick a section from the suggestions.
+- `/search docs`: find a symbol by name. `kind` limits the results to one kind of symbol, and `transport` hides results from the transport you don't use.
+
+Both commands reply only to you by default, and each one allows 10 uses a minute per person. They also take these options:
+
+- `public`: everyone in the channel sees the reply.
+- `ping`: mentions someone in the reply.
+- `suppress-embed`: wraps the link in `<>` to hide its preview.
 
 ## Running it
 
 ```sh
-bun run dev
+pnpm dev
 ```
 
-That starts the dev server with hot reload and opens a tunnel so Discord can reach your interactions endpoint.
+This opens a tunnel for Discord and hot reloads your changes. Run `pnpm check` for types, lint, and formatting.
 
-## Scripts
-
-<!-- prettier-ignore-start -->
-
-| script | what it does |
-| --- | --- |
-| `bun run dev` | dev server with hot reload |
-| `bun run build` | build the worker into `.cloudflare/output/` |
-| `bun run deploy` | build, then upload the worker with `cf deploy` |
-| `bun run codegen` | regenerate `src/seedcord-gen.d.ts` |
-| `bun run types` | regenerate the binding types in `.cloudflare/types/` |
-| `bun run commands` | list, deploy, or clean up your commands on Discord |
-| `bun run commands:deploy` | send your commands to Discord |
-| `bun run tc` | type-check |
-| `bun run lint` | eslint |
-| `bun run check` | type-check, lint, and check formatting |
-
-<!-- prettier-ignore-end -->
-
-Run `codegen` after you add a command or change its options. It writes the types behind `this.options`, and the generated file is committed.
+`/search guide` calls the `seedcord-guide` worker through a service binding. Dev and production bind to different workers, and this worker has to be on the same Cloudflare account as both.
 
 ## Environment
 
@@ -46,25 +38,17 @@ Run `codegen` after you add a command or change its options. It writes the types
 
 <!-- prettier-ignore-end -->
 
-The two webhook keys take Discord webhook URLs. Set them to get error reports posted to a channel.
+A worker only gets the keys that `cloudflare.config.ts` declares.
 
-A worker gets only the keys that `cloudflare.config.ts` declares. Add a line there for each new one your bot reads. `bun run dev` takes their values from `.env`.
-
-Cloudflare refuses to deploy a new worker until every declared secret has a value. Put the production values in a file like `.env.production`, then deploy the first time with:
+## Deploying
 
 ```sh
-bun run build && bun x cf deploy --prebuilt --secrets-file .env.production
+pnpm commands:deploy
+pnpm run deploy
 ```
 
-After that, `bun run deploy` is enough. `TESTING_GUILD_IDS` can stay empty there, since a deployed worker never deploys commands.
+Cloudflare needs a value for every declared secret before it accepts a new worker, so deploy the first time with:
 
-## Where things go
-
-- `src/commands/` holds command definitions, one class per command.
-- `src/handlers/` holds the code that runs when someone uses one.
-- `src/bot.ts` is the config.
-
-## Docs
-
-- Guide: <https://seedcord.org/guide>
-- API reference: <https://seedcord.org/docs>
+```sh
+pnpm build && pnpm exec cf deploy --prebuilt --secrets-file .env.production
+```

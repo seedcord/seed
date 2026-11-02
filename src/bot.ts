@@ -3,7 +3,7 @@ import { Converters, Envapter } from 'envapt';
 
 import { Search } from './plugins/Search';
 
-export const seedcord = new Seedcord({
+export default new Seedcord({
     bot: {
         interactions: {
             path: './handlers'
@@ -21,5 +21,3 @@ export const seedcord = new Seedcord({
         developerUsername: 'materwelonDhruv'
     }
 }).attach('search', Search);
-
-export default seedcord;
