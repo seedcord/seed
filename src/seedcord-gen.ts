@@ -9,6 +9,8 @@ declare module '@seedcord/http' {
         search: (typeof Bot)['search'];
     }
     interface SlashRegistry {
+        'delete-app-emojis': { options: {}; cache: undefined };
+        'delete-server-emojis': { options: {}; cache: 'cached' };
         'search/docs': { options: { query: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false }; 'suppress-embed': { kind: 'boolean'; required: false }; kind: { kind: 'string'; required: false; choices: ['all', 'class', 'interface', 'type', 'enum', 'function', 'variable', 'member'] }; transport: { kind: 'string'; required: false; choices: ['http', 'gateway'] } }; cache: undefined };
         'search/guide': { options: { question: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false }; 'suppress-embed': { kind: 'boolean'; required: false } }; cache: undefined };
     }
@@ -16,6 +18,8 @@ declare module '@seedcord/http' {
 
     }
     interface MessageContextMenuRegistry {
+        'Add as App Emoji': { cache: undefined };
+        'Add as Server Emoji': { cache: 'cached' };
         'Answer with docs': { cache: undefined };
     }
     interface EmojiMap {

@@ -37,7 +37,8 @@
         "vite": "^8.3.4"
     },
     "dependencies": {
-        "@discordjs/builders": "^1.14.1",
+        "@discordjs/builders": "^1.15.0",
+        "@discordjs/core": "^2.7.0",
         "@seedcord/docs-search": "./seedcord-docs-search-0.0.0.tgz",
         "@seedcord/http": "^0.12.0-next.0",
         "envapt": "^9.2.0"

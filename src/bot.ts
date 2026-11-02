@@ -17,6 +17,7 @@ export default new Seedcord({
         path: null
     },
     botColor: '#f8555a',
+    ownerIds: ['287135364127129601'],
     notifications: {
         developerUsername: 'materwelonDhruv'
     }

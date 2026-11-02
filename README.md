@@ -13,6 +13,13 @@ Both commands reply only to you by default, and each one allows 10 uses a minute
 - `ping`: mentions someone in the reply.
 - `suppress-embed`: wraps the link in `<>` to hide its preview.
 
+To manage emojis:
+
+- `Add as Server Emoji` and `Add as App Emoji`: right-click a message to add its images as emojis, each named after its file.
+- `/delete-server-emojis` and `/delete-app-emojis`: pick emojis to delete.
+
+The app emoji commands only work for the owner.
+
 ## Running it
 
 ```sh
