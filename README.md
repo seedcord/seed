@@ -23,10 +23,10 @@ The app emoji commands only work for the owner.
 ## Running it
 
 ```sh
-pnpm dev
+bun run dev
 ```
 
-This opens a tunnel for Discord and hot reloads your changes. Run `pnpm check` for types, lint, and formatting.
+This opens a tunnel for Discord and hot reloads your changes. Run `bun run check` for types, lint, and formatting.
 
 `/search guide` calls the `seedcord-guide` worker through a service binding. Dev and production bind to different workers, and this worker has to be on the same Cloudflare account as both.
 
@@ -50,12 +50,12 @@ A worker only gets the keys that `cloudflare.config.ts` declares.
 ## Deploying
 
 ```sh
-pnpm commands:deploy
-pnpm run deploy
+bun run commands:deploy
+bun run deploy
 ```
 
 Cloudflare needs a value for every declared secret before it accepts a new worker, so deploy the first time with:
 
 ```sh
-pnpm build && pnpm exec cf deploy --prebuilt --secrets-file .env.production
+bun run build && bun x cf deploy --prebuilt --secrets-file .env.production
 ```
