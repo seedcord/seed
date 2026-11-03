@@ -7,7 +7,7 @@ A Discord bot built with [seedcord](https://seedcord.org). It runs on Cloudflare
 ### Docs
 
 - `/search guide`: ask a question in your own words, or pick a section from the suggestions.
-- `/search docs`: find a symbol by name. `kind` limits the results to one kind of symbol, and `transport` hides results from the transport you don't use.
+- `/search docs`: find a symbol by name. `kind` limits the results to one kind of symbol, `transport` hides results from the transport you don't use, and `prerelease` searches the `@next` versions.
 - `Answer with docs`: right-click a message to pick a guide section that answers it. The bot posts the section's link and mentions the message's author.
 
 Both `/search` commands reply only to you by default, and each one allows 10 uses a minute per person. They also take these options:

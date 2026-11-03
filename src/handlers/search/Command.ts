@@ -15,7 +15,8 @@ export class Search extends SlashHandler<'search/guide' | 'search/docs'> {
             'search/docs': (options) =>
                 this.core.search.docsAnswer(options.getString('query'), {
                     kind: options.getString('kind'),
-                    transport: options.getString('transport')
+                    transport: options.getString('transport'),
+                    prerelease: options.getBoolean('prerelease')
                 }),
             'search/guide': (options) => this.core.search.guideAnswer(options.getString('question'))
         });

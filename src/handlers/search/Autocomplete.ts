@@ -35,8 +35,12 @@ function guideChoice(section: GuideResult): APIApplicationCommandOptionChoice<st
 @AutocompleteRoute('search/docs')
 export class DocsAutocomplete extends AutocompleteHandler<'search/docs'> {
     public async execute(): Promise<void> {
-        const filter = { kind: this.options.getString('kind'), transport: this.options.getString('transport') };
-        await this.respond(this.core.search.docs(this.focused.value, filter).map(docsChoice));
+        const results = await this.core.search.docs(this.focused.value, {
+            kind: this.options.getString('kind'),
+            transport: this.options.getString('transport'),
+            prerelease: this.options.getBoolean('prerelease')
+        });
+        await this.respond(results.map(docsChoice));
     }
 }
 

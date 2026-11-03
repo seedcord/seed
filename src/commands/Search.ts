@@ -71,6 +71,9 @@ class DocsSearch extends SubSearch {
                     .setDescription("The transport you use to hide the other's results")
                     .setRequired(false)
                     .addChoices({ name: 'http', value: 'http' }, { name: 'gateway', value: 'gateway' })
+            )
+            .addBooleanOption((o) =>
+                o.setName('prerelease').setDescription('Search the @next versions').setRequired(false)
             );
     }
 }
