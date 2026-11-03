@@ -1,29 +1,31 @@
 # seed
 
-A Discord bot that searches the [seedcord](https://seedcord.org) guide and reference docs. It runs on Cloudflare Workers, and you can add it to a server or install it on your account.
+A Discord bot built with [seedcord](https://seedcord.org). It runs on Cloudflare Workers, and you can add it to a server or install it on your account.
 
 ## Commands
 
+### Docs
+
 - `/search guide`: ask a question in your own words, or pick a section from the suggestions.
 - `/search docs`: find a symbol by name. `kind` limits the results to one kind of symbol, and `transport` hides results from the transport you don't use.
+- `Answer with docs`: right-click a message to pick a guide section that answers it. The bot posts the section's link and mentions the message's author.
 
-Both commands reply only to you by default, and each one allows 10 uses a minute per person. They also take these options:
+Both `/search` commands reply only to you by default, and each one allows 10 uses a minute per person. They also take these options:
 
 - `public`: everyone in the channel sees the reply.
 - `ping`: mentions someone in the reply.
 - `suppress-embed`: wraps the link in `<>` to hide its preview.
 
-Two more commands:
+### Versions
 
 - `/versions`: shows the latest and next version of each seedcord package and when each was released. Each version links to its npmx page.
-- `Answer with docs`: right-click a message to pick a guide section that answers it. The bot posts the section's link and mentions the message's author.
 
-To manage emojis:
+### Emojis
 
 - `Add as Server Emoji` and `Add as App Emoji`: right-click a message to add its images as emojis, each named after its file.
-- `/delete-server-emojis` and `/delete-app-emojis`: pick emojis to delete.
+- `/emojis delete guild` and `/emojis delete app`: pick emojis to delete.
 
-The app emoji commands only work for the owner.
+The app emoji commands only work for me.
 
 ## Running it
 
@@ -55,7 +57,7 @@ A worker only gets the keys that `cloudflare.config.ts` declares.
 ## Deploying
 
 ```sh
-bun run commands:deploy
+NODE_ENV=production bun run commands:deploy
 bun run deploy
 ```
 

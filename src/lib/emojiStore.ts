@@ -1,7 +1,7 @@
 import type { API } from '@discordjs/core/http-only';
 import type { APIAttachment, APIEmoji } from 'discord-api-types/v10';
 
-export const EMOJI_SCOPES = ['server', 'app'] as const;
+export const EMOJI_SCOPES = ['guild', 'app'] as const;
 
 export type EmojiScope = (typeof EMOJI_SCOPES)[number];
 
@@ -47,7 +47,7 @@ class AppEmojis implements EmojiStore {
     }
 }
 
-class ServerEmojis implements EmojiStore {
+class GuildEmojis implements EmojiStore {
     constructor(
         private readonly api: API,
         private readonly guildId: string
@@ -73,8 +73,8 @@ export function emojiStore(
     interaction: { application_id: string; guild_id?: string | undefined }
 ): EmojiStore {
     if (scope === 'app') return new AppEmojis(api, interaction.application_id);
-    if (!interaction.guild_id) throw new Error('Server emojis need a server.');
-    return new ServerEmojis(api, interaction.guild_id);
+    if (!interaction.guild_id) throw new Error('Guild emojis need a guild.');
+    return new GuildEmojis(api, interaction.guild_id);
 }
 
 const emojiMention = ({ id, name, animated }: StoredEmoji): string => `<${animated ? 'a' : ''}:${name}:${id}>`;

@@ -21,19 +21,19 @@ import { emojiStore } from '#lib/emojiStore';
     RequirePermissions([PermissionFlagsBits.ManageGuildExpressions]),
     RequireBotPermissions([PermissionFlagsBits.ManageGuildExpressions])
 )
-@SlashRoute('delete-server-emojis')
-export class DeleteServerEmojis extends SlashHandler<'delete-server-emojis'> {
+@SlashRoute('emojis/delete/guild')
+export class DeleteGuildEmojis extends SlashHandler<'emojis/delete/guild'> {
     public async execute(): Promise<void> {
         await this.defer();
 
-        const emojis = await emojiStore('server', this.api, this.event).list();
-        await this.edit({ components: [new EmojiDeleteCard('server', 0, emojis).component] });
+        const emojis = await emojiStore('guild', this.api, this.event).list();
+        await this.edit({ components: [new EmojiDeleteCard('guild', 0, emojis).component] });
     }
 }
 
 @Gated(OwnerOnly())
-@SlashRoute('delete-app-emojis')
-export class DeleteAppEmojis extends SlashHandler<'delete-app-emojis'> {
+@SlashRoute('emojis/delete/app')
+export class DeleteAppEmojis extends SlashHandler<'emojis/delete/app'> {
     public async execute(): Promise<void> {
         await this.defer();
 

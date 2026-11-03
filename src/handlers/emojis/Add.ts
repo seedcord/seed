@@ -20,7 +20,7 @@ import { addImages, emojiStore } from '#lib/emojiStore';
 export class AddAsServerEmoji extends MessageContextMenuHandler<'Add as Server Emoji'> {
     public async execute(): Promise<void> {
         await this.defer();
-        await this.edit(await addImages(emojiStore('server', this.api, this.event), this.target.attachments));
+        await this.edit(await addImages(emojiStore('guild', this.api, this.event), this.target.attachments));
     }
 }
 
