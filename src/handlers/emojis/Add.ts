@@ -9,7 +9,8 @@ import {
 } from '@seedcord/http';
 import { PermissionFlagsBits } from 'discord-api-types/v10';
 
-import { addImages, emojiStore } from '#lib/emojiStore';
+import { addImagesAsEmojis } from '#lib/addImagesAsEmojis';
+import { emojiStore } from '#lib/emojiStore';
 
 @Gated(
     GuildOnly(),
@@ -20,7 +21,7 @@ import { addImages, emojiStore } from '#lib/emojiStore';
 export class AddAsServerEmoji extends MessageContextMenuHandler<'Add as Server Emoji'> {
     public async execute(): Promise<void> {
         await this.defer();
-        await this.edit(await addImages(emojiStore('guild', this.api, this.event), this.target.attachments));
+        await this.edit(await addImagesAsEmojis(emojiStore('guild', this.api, this.event), this.target.attachments));
     }
 }
 
@@ -29,6 +30,6 @@ export class AddAsServerEmoji extends MessageContextMenuHandler<'Add as Server E
 export class AddAsAppEmoji extends MessageContextMenuHandler<'Add as App Emoji'> {
     public async execute(): Promise<void> {
         await this.defer();
-        await this.edit(await addImages(emojiStore('app', this.api, this.event), this.target.attachments));
+        await this.edit(await addImagesAsEmojis(emojiStore('app', this.api, this.event), this.target.attachments));
     }
 }

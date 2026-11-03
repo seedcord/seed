@@ -1,5 +1,5 @@
 import type { API } from '@discordjs/core/http-only';
-import type { APIAttachment, APIEmoji } from 'discord-api-types/v10';
+import type { APIEmoji } from 'discord-api-types/v10';
 
 export const EMOJI_SCOPES = ['guild', 'app'] as const;
 
@@ -17,15 +17,13 @@ export interface EmojiStore {
     delete(id: string): Promise<void>;
 }
 
-// discord rejects an emoji image over 256 KiB
-const MAX_IMAGE_BYTES = 262_144;
-const NAME_LENGTH = { min: 2, max: 32 };
-
 function storedEmoji({ id, name, animated }: APIEmoji): StoredEmoji {
     // discord leaves these null on unicode emojis
     if (!id || !name) throw new Error('Discord returned an emoji without an id or a name.');
     return { id, name, animated: animated ?? false };
 }
+
+const newestFirst = (a: StoredEmoji, b: StoredEmoji): number => (BigInt(b.id) > BigInt(a.id) ? 1 : -1);
 
 class AppEmojis implements EmojiStore {
     constructor(
@@ -35,7 +33,7 @@ class AppEmojis implements EmojiStore {
 
     async list(): Promise<StoredEmoji[]> {
         const { items } = await this.api.applications.getEmojis(this.applicationId);
-        return items.map(storedEmoji);
+        return items.map(storedEmoji).sort(newestFirst);
     }
 
     async create(name: string, image: string): Promise<StoredEmoji> {
@@ -55,7 +53,7 @@ class GuildEmojis implements EmojiStore {
 
     async list(): Promise<StoredEmoji[]> {
         const emojis = await this.api.guilds.getEmojis(this.guildId);
-        return emojis.map(storedEmoji);
+        return emojis.map(storedEmoji).sort(newestFirst);
     }
 
     async create(name: string, image: string): Promise<StoredEmoji> {
@@ -75,39 +73,4 @@ export function emojiStore(
     if (scope === 'app') return new AppEmojis(api, interaction.application_id);
     if (!interaction.guild_id) throw new Error('Guild emojis need a guild.');
     return new GuildEmojis(api, interaction.guild_id);
-}
-
-const emojiMention = ({ id, name, animated }: StoredEmoji): string => `<${animated ? 'a' : ''}:${name}:${id}>`;
-
-function emojiName(fileName: string): string {
-    const stem = fileName.replace(/\.[^.]+$/, '').replaceAll(/\W/g, '_');
-    return stem.padEnd(NAME_LENGTH.min, '_').slice(0, NAME_LENGTH.max);
-}
-
-async function imageDataUri({ url, content_type: contentType }: APIAttachment): Promise<string> {
-    const response = await fetch(url);
-    let binary = '';
-    for (const byte of new Uint8Array(await response.arrayBuffer())) binary += String.fromCodePoint(byte);
-    return `data:${contentType};base64,${btoa(binary)}`;
-}
-
-async function addImage(store: EmojiStore, image: APIAttachment): Promise<string> {
-    const name = emojiName(image.filename);
-    if (image.size > MAX_IMAGE_BYTES) return `\`${name}\` failed: the image is over 256 KB.`;
-
-    try {
-        const emoji = emojiMention(await store.create(name, await imageDataUri(image)));
-        return `${emoji} \`${emoji}\``;
-    } catch (error) {
-        return `\`${name}\` failed: ${Error.isError(error) ? error.message : String(error)}`;
-    }
-}
-
-export async function addImages(store: EmojiStore, attachments: readonly APIAttachment[]): Promise<string> {
-    const images = attachments.filter((file) => file.content_type?.startsWith('image/'));
-    if (images.length === 0) return "That message doesn't have any images.";
-
-    const lines: string[] = [];
-    for (const image of images) lines.push(await addImage(store, image));
-    return lines.join('\n');
 }

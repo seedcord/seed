@@ -3,6 +3,7 @@ import { BuilderComponent, Emojis } from '@seedcord/http';
 import { ChannelToggle } from '#components/versions/ChannelToggle';
 import { GroupTabs } from '#components/versions/GroupTabs';
 import { VersionRow } from '#components/versions/VersionRow';
+import { countOf } from '#lib/text';
 
 import type { VersionsView } from '#components/versions/view';
 import type { PackageVersions } from '#lib/packages';
@@ -13,7 +14,9 @@ export class VersionsCard extends BuilderComponent<'container'> {
 
         this.instance
             .addTextDisplayComponents((text) =>
-                text.setContent(`## ${Emojis[view.tab].toString()} ${view.tab} · ${packages.length} packages`)
+                text.setContent(
+                    `## ${Emojis[view.tab].toString()} ${view.tab} · ${countOf(packages.length, 'package', 'packages')}`
+                )
             )
             .addActionRowComponents(new GroupTabs(view).component)
             .addSeparatorComponents((separator) => separator)

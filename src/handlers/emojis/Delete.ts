@@ -13,8 +13,22 @@ import {
 } from '@seedcord/http';
 import { PermissionFlagsBits } from 'discord-api-types/v10';
 
-import { EmojiDeleteCard, EmojiDeleteId, EmojiPageId } from '#components/emojis/EmojiDeleteCard';
+import { EmojiDeleteCard } from '#components/emojis/EmojiDeleteCard';
+import { pickedEmojiIds } from '#components/emojis/EmojiPicker';
+import { EmojiDeleteId, EmojiPageId, EmojiPickId } from '#components/emojis/view';
 import { emojiStore } from '#lib/emojiStore';
+
+import type { EmojiView } from '#components/emojis/view';
+import type { EmojiStore } from '#lib/emojiStore';
+import type { ReplyResponse } from '@seedcord/http';
+
+async function deleteCard(
+    store: EmojiStore,
+    view: EmojiView,
+    pickedIds: readonly string[] = []
+): Promise<ReplyResponse> {
+    return { components: [new EmojiDeleteCard(view, await store.list(), pickedIds).component] };
+}
 
 @Gated(
     GuildOnly(),
@@ -25,9 +39,7 @@ import { emojiStore } from '#lib/emojiStore';
 export class DeleteGuildEmojis extends SlashHandler<'emojis/delete/guild'> {
     public async execute(): Promise<void> {
         await this.defer();
-
-        const emojis = await emojiStore('guild', this.api, this.event).list();
-        await this.edit({ components: [new EmojiDeleteCard('guild', 0, emojis).component] });
+        await this.edit(await deleteCard(emojiStore('guild', this.api, this.event), { scope: 'guild', page: 0 }));
     }
 }
 
@@ -36,9 +48,7 @@ export class DeleteGuildEmojis extends SlashHandler<'emojis/delete/guild'> {
 export class DeleteAppEmojis extends SlashHandler<'emojis/delete/app'> {
     public async execute(): Promise<void> {
         await this.defer();
-
-        const emojis = await emojiStore('app', this.api, this.event).list();
-        await this.edit({ components: [new EmojiDeleteCard('app', 0, emojis).component] });
+        await this.edit(await deleteCard(emojiStore('app', this.api, this.event), { scope: 'app', page: 0 }));
     }
 }
 
@@ -46,22 +56,27 @@ export class DeleteAppEmojis extends SlashHandler<'emojis/delete/app'> {
 export class EmojiPage extends ButtonHandler<[typeof EmojiPageId]> {
     public async execute(): Promise<void> {
         await this.deferUpdate();
-
-        const { scope, page } = this.params;
-        const emojis = await emojiStore(scope, this.api, this.event).list();
-        await this.edit({ components: [new EmojiDeleteCard(scope, page, emojis).component] });
+        await this.edit(await deleteCard(emojiStore(this.params.scope, this.api, this.event), this.params));
     }
 }
 
-@StringMenuRoute(EmojiDeleteId)
-export class EmojiDelete extends StringMenuHandler<[typeof EmojiDeleteId]> {
+@StringMenuRoute(EmojiPickId)
+export class EmojiPick extends StringMenuHandler<[typeof EmojiPickId]> {
+    public async execute(): Promise<void> {
+        await this.deferUpdate();
+        await this.edit(
+            await deleteCard(emojiStore(this.params.scope, this.api, this.event), this.params, this.values)
+        );
+    }
+}
+
+@ButtonRoute(EmojiDeleteId)
+export class EmojiDelete extends ButtonHandler<[typeof EmojiDeleteId]> {
     public async execute(): Promise<void> {
         await this.deferUpdate();
 
-        const { scope, page } = this.params;
-        const store = emojiStore(scope, this.api, this.event);
-        await Promise.all(this.values.map((id) => store.delete(id)));
-
-        await this.edit({ components: [new EmojiDeleteCard(scope, page, await store.list()).component] });
+        const store = emojiStore(this.params.scope, this.api, this.event);
+        await Promise.all(pickedEmojiIds(this.event.message).map((id) => store.delete(id)));
+        await this.edit(await deleteCard(store, this.params));
     }
 }

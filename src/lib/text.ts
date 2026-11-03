@@ -4,6 +4,12 @@ import type { GuideResult } from '@seedcord/docs-search';
 
 export const CHOICE_MAX_LENGTH = 100;
 
+const pluralRules = new Intl.PluralRules('en');
+
+export function countOf(count: number, one: string, other: string): string {
+    return `${count} ${pluralRules.select(count) === 'one' ? one : other}`;
+}
+
 export function cutAtWord(text: string, maxLength: number): string {
     return text.length <= maxLength ? text : text.slice(0, maxLength).replace(/\s+\S*$/, '');
 }
