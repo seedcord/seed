@@ -1,8 +1,11 @@
+import type { EpochMs } from '@seedcord/http';
+
 interface PackageEntry {
     name: string;
     description: string;
 }
 
+// i'm just gonna keep this hardcoded ngl
 export const PACKAGE_GROUPS = {
     Core: [
         { name: 'seedcord', description: 'CLI and dev server' },
@@ -40,7 +43,7 @@ export type Channel = (typeof CHANNELS)[number];
 
 interface PublishedVersion {
     version: string;
-    publishedAt: number;
+    publishedAt: EpochMs;
 }
 
 export interface PackageVersions extends PackageEntry {
@@ -48,6 +51,8 @@ export interface PackageVersions extends PackageEntry {
     latest: PublishedVersion | undefined;
     next: PublishedVersion | undefined;
 }
+
+export type GroupedVersions = Record<PackageGroup, PackageVersions[]>;
 
 interface ResolvedTag {
     name: string;
@@ -69,26 +74,40 @@ function isNewer(version: string, than: string): boolean {
 function publishedTag(tags: readonly ResolvedTag[], name: string, specifier: string): PublishedVersion | undefined {
     const tag = tags.find((candidate) => candidate.name === name && candidate.specifier === specifier);
     return tag?.version && tag.publishedAt
-        ? { version: tag.version, publishedAt: Date.parse(tag.publishedAt) }
+        ? { version: tag.version, publishedAt: Date.parse(tag.publishedAt) as EpochMs }
         : undefined;
 }
 
-// fast-npm-meta caches for 15 minutes
-export async function fetchGroup(group: PackageGroup): Promise<PackageVersions[]> {
-    const entries: readonly PackageEntry[] = PACKAGE_GROUPS[group];
-    const specs = entries.flatMap(({ name }) => [name, `${name}@next`]).join('+');
+function packageVersions({ name, description }: PackageEntry, tags: readonly ResolvedTag[]): PackageVersions {
+    const latest = publishedTag(tags, name, 'latest');
+    const next = publishedTag(tags, name, 'next');
+    return {
+        name,
+        description,
+        shortName: name.replace('@seedcord/', '').replace('plugin-', ''),
+        latest,
+        next: next && latest && isNewer(next.version, latest.version) ? next : undefined
+    };
+}
+
+export async function fetchAllVersions(): Promise<GroupedVersions> {
+    const names = Object.values<readonly PackageEntry[]>(PACKAGE_GROUPS).flatMap((entries) =>
+        entries.map(({ name }) => name)
+    );
+    const specs = names.flatMap((name) => [name, `${name}@next`]).join('+');
+
+    // fast-npm-meta caches for 15 minutes
     const response = await fetch(`https://npm.antfu.dev/${specs}`);
+    if (!response.ok) throw new Error(`fast-npm-meta answered ${response.status}.`);
     const tags = await response.json<ResolvedTag[]>();
 
-    return entries.map(({ name, description }) => {
-        const latest = publishedTag(tags, name, 'latest');
-        const next = publishedTag(tags, name, 'next');
-        return {
-            name,
-            description,
-            shortName: name.replace('@seedcord/', '').replace('plugin-', ''),
-            latest,
-            next: next && latest && isNewer(next.version, latest.version) ? next : undefined
-        };
-    });
+    const versionsIn = (group: PackageGroup): PackageVersions[] =>
+        PACKAGE_GROUPS[group].map((entry) => packageVersions(entry, tags));
+
+    return {
+        Core: versionsIn('Core'),
+        Libs: versionsIn('Libs'),
+        Plugins: versionsIn('Plugins'),
+        Tools: versionsIn('Tools')
+    };
 }

@@ -1,19 +1,18 @@
 import { ButtonBuilder } from '@discordjs/builders';
-import { BuilderComponent } from '@seedcord/http';
+import { BuilderComponent, toEpochSeconds } from '@seedcord/http';
 import { ButtonStyle } from 'discord-api-types/v10';
 
 import type { VersionsView } from '#components/versions/view';
 import type { PackageVersions } from '#lib/packages';
 
 const NPMX_PACKAGE_URL = 'https://npmx.dev/package';
-const MS_PER_SECOND = 1000;
 
 export class VersionRow extends BuilderComponent<'section'> {
     constructor(pkg: PackageVersions, { channel }: VersionsView) {
         super('section');
 
         const published = pkg[channel];
-        const released = published ? ` · <t:${Math.floor(published.publishedAt / MS_PER_SECOND)}:R>` : '';
+        const released = published ? ` · <t:${toEpochSeconds(published.publishedAt)}:R>` : '';
 
         this.instance
             .addTextDisplayComponents((text) =>

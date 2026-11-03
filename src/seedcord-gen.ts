@@ -7,6 +7,7 @@ import type Bot from './bot';
 declare module '@seedcord/http' {
     interface Core {
         search: (typeof Bot)['search'];
+        versions: (typeof Bot)['versions'];
     }
     interface SlashRegistry {
         'emojis/delete/app': { options: {}; cache: undefined };

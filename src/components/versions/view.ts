@@ -10,5 +10,3 @@ export interface VersionsView {
 }
 
 export const VersionsNavId = new CustomId('versions-nav').oneOf('tab', GROUP_NAMES).oneOf('channel', CHANNELS);
-
-export const otherChannel = (channel: Channel): Channel => (channel === 'latest' ? 'next' : 'latest');
