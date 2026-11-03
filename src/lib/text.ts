@@ -1,5 +1,3 @@
-import { currentTime } from '@seedcord/http';
-
 import type { GuideResult } from '@seedcord/docs-search';
 
 export const CHOICE_MAX_LENGTH = 100;
@@ -20,8 +18,4 @@ export function fitChoiceName(name: string): string {
 
 export function sectionName({ page, heading }: GuideResult): string {
     return fitChoiceName(heading ? `${page} › ${heading}` : page);
-}
-
-export function outOfAllowanceNotice(retryAfterSeconds: number): string {
-    return `The guide search is out of its daily allowance. Try again <t:${currentTime() + retryAfterSeconds}:R>.`;
 }

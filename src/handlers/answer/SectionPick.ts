@@ -1,6 +1,7 @@
 import { StringMenuHandler, StringMenuRoute } from '@seedcord/http';
 
 import { SectionPickId } from '#components/SectionPicker';
+import { GuideSectionGone } from '#lib/notices';
 
 @StringMenuRoute(SectionPickId)
 export class SectionPick extends StringMenuHandler<[typeof SectionPickId]> {
@@ -8,10 +9,7 @@ export class SectionPick extends StringMenuHandler<[typeof SectionPickId]> {
         const [path] = this.values;
         const section = path === undefined ? undefined : await this.core.search.guideSection(path);
 
-        if (!section) {
-            await this.update('That section no longer exists.');
-            return;
-        }
+        if (!section) throw new GuideSectionGone();
 
         await this.update('Sent.');
         await this.api.interactions.followUp(this.event.application_id, this.event.token, {

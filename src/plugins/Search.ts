@@ -12,8 +12,9 @@ import {
 } from '@seedcord/docs-search';
 import { Plugin } from '@seedcord/http';
 
+import { GuideOutOfAllowance } from '#lib/notices';
+
 import type {
-    GuideAnswer,
     GuideResult,
     GuideSection,
     GuideService,
@@ -70,12 +71,16 @@ export class Search extends Plugin {
         return byPath.get(path);
     }
 
-    public async guideAnswer(query: string): Promise<GuideAnswer> {
+    public async guideHits(query: string): Promise<GuideResult[]> {
         const picked = await this.guideSection(query);
-        if (picked) return { hits: [picked] };
+        if (picked) return [picked];
 
         const question = parseQuestion(query);
-        return question ? await guideWorker().ask(question) : { hits: [] };
+        if (!question) return [];
+
+        const answer = await guideWorker().ask(question);
+        if ('retryAfterSeconds' in answer) throw new GuideOutOfAllowance(answer.retryAfterSeconds);
+        return answer.hits;
     }
 
     public async docs(query: string, { kind, transport, prerelease }: DocsFilter): Promise<ReferenceSearchResult[]> {
@@ -87,10 +92,10 @@ export class Search extends Plugin {
             .slice(0, MAX_CHOICES);
     }
 
-    public async docsAnswer(query: string, filter: DocsFilter): Promise<{ hits: ReferenceSearchResult[] }> {
+    public async docsHits(query: string, filter: DocsFilter): Promise<ReferenceSearchResult[]> {
         const index = await this.docsIndex(filter.prerelease);
         const picked = index.get(query);
-        return { hits: picked ? [picked] : await this.docs(query, filter) };
+        return picked ? [picked] : await this.docs(query, filter);
     }
 
     private async docsIndex(prerelease: boolean | null): Promise<SearchResults> {

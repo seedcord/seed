@@ -1,4 +1,4 @@
-import type { API } from '@discordjs/core/http-only';
+import type { API } from '@seedcord/http';
 import type { APIEmoji } from 'discord-api-types/v10';
 
 export const EMOJI_SCOPES = ['guild', 'app'] as const;

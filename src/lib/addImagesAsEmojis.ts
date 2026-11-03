@@ -1,3 +1,5 @@
+import { NoImagesInMessage } from '#lib/notices';
+
 import type { EmojiStore, StoredEmoji } from '#lib/emojiStore';
 import type { APIAttachment } from 'discord-api-types/v10';
 
@@ -35,7 +37,7 @@ async function addImage(store: EmojiStore, image: APIAttachment): Promise<string
 
 export async function addImagesAsEmojis(store: EmojiStore, attachments: readonly APIAttachment[]): Promise<string> {
     const images = attachments.filter((file) => file.content_type?.startsWith('image/'));
-    if (images.length === 0) return "That message doesn't have any images.";
+    if (images.length === 0) throw new NoImagesInMessage();
 
     const lines: string[] = [];
     for (const image of images) lines.push(await addImage(store, image));

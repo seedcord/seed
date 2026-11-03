@@ -13,7 +13,7 @@ export default defineConfig(({ mode = 'production' }) => ({
             ENV: bindings.text(mode),
             GUIDE: bindings.worker({
                 worker: mode === 'production' ? 'seedcord-guide' : 'seedcord-guide-next',
-                dev: { remote: mode !== 'production' }
+                dev: { remote: true }
             })
         }
     }
