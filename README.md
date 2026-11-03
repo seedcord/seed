@@ -1,6 +1,6 @@
 # seed
 
-A Discord bot built with [seedcord](https://seedcord.org). It runs on Cloudflare Workers, and you can add it to a server or install it on your account.
+A Discord bot built with [seedcord](https://seedcord.org). It runs on Cloudflare Workers, and you can [add it to a server or install it on your account](https://discord.com/oauth2/authorize?client_id=1195232619718254663).
 
 ## Commands
 
