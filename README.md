@@ -20,6 +20,10 @@ Both `/search` commands reply only to you by default, and each one allows 10 use
 
 - `/versions`: shows the latest and next version of each seedcord package and when each was released. Each version links to its npmx page.
 
+### Command mentions
+
+- `/command`: posts a clickable mention of one of the bot's commands, so you can point someone at it. `ping` mentions them in the same message.
+
 ### Emojis
 
 - `Add as Server Emoji` and `Add as App Emoji`: right-click a message to add its images as emojis, each named after its file.

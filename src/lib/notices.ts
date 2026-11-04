@@ -24,6 +24,12 @@ export class GuideOutOfAllowance extends Notice {
     }
 }
 
+export class UnknownCommand extends Notice {
+    constructor(name: string) {
+        super(`I don't have a \`${name}\` command. Pick one from the suggestions.`);
+    }
+}
+
 export class NoImagesInMessage extends Notice {
     constructor() {
         super("That message doesn't have any images.");

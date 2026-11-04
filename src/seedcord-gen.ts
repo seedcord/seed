@@ -10,6 +10,7 @@ declare module '@seedcord/http' {
         versions: (typeof Bot)['versions'];
     }
     interface SlashRegistry {
+        command: { options: { name: { kind: 'string'; required: true; autocomplete: true }; ping: { kind: 'user'; required: false } }; cache: undefined };
         'emojis/delete/app': { options: {}; cache: undefined };
         'emojis/delete/guild': { options: {}; cache: undefined };
         'search/docs': { options: { query: { kind: 'string'; required: true; autocomplete: true }; public: { kind: 'boolean'; required: false }; ping: { kind: 'user'; required: false }; 'suppress-embed': { kind: 'boolean'; required: false }; kind: { kind: 'string'; required: false; choices: ['all', 'class', 'interface', 'type', 'enum', 'function', 'variable', 'member'] }; transport: { kind: 'string'; required: false; choices: ['http', 'gateway'] }; prerelease: { kind: 'boolean'; required: false } }; cache: undefined };
