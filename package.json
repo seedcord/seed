@@ -13,6 +13,7 @@
         "codegen": "seedcord codegen",
         "types": "cf workers types",
         "commands": "seedcord commands",
+        "ask": "seedcord ask",
         "commands:deploy": "seedcord commands deploy",
         "tc": "tsc --noEmit",
         "lint": "eslint \"src/**/*.ts\" --cache",
@@ -32,14 +33,15 @@
         "eslint": "^10.13.0",
         "jiti": "^2.7.0",
         "prettier": "^3.9.10",
-        "seedcord": "^0.23.0-next.2",
+        "seedcord": "^0.23.0",
         "typescript": "~6.0",
         "vite": "^8.3.4"
     },
     "dependencies": {
         "@discordjs/builders": "^1.15.0",
+        "@seedcord/brand": "./seedcord-brand-0.0.0.tgz",
         "@seedcord/docs-search": "./seedcord-docs-search-0.0.0.tgz",
-        "@seedcord/http": "^0.12.0-next.2",
+        "@seedcord/http": "^0.12.0",
         "envapt": "^9.2.0"
     }
 }

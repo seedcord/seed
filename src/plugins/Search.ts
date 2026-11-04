@@ -1,5 +1,6 @@
 import { env } from 'cloudflare:workers';
 
+import { NEXT_GUIDE, PRODUCTION_SITES } from '@seedcord/brand';
 import {
     ALL_PACKAGES,
     GUIDE_SECTIONS_PATH,
@@ -40,6 +41,8 @@ const OTHER_TRANSPORT_PACKAGE: Record<Transport, string> = {
 
 const guideWorker = (): Fetcher & GuideService => env.GUIDE as Fetcher & GuideService;
 
+const GUIDE_SITE = env.ENV === 'production' ? PRODUCTION_SITES.guide : NEXT_GUIDE;
+
 export class Search extends Plugin {
     private readonly referenceSearch = new ReferenceSearch();
 
@@ -47,11 +50,13 @@ export class Search extends Plugin {
 
     private readonly guideIndex = loadOnce(async () => {
         const sections = await readJson<GuideSection[]>(GUIDE_SECTIONS_PATH, (path) =>
-            guideWorker().fetch(`https://seedcord.org/guide${path}`)
+            guideWorker().fetch(GUIDE_SITE.at(path))
         );
         return {
-            matches: new GuideMatches(sections),
-            byPath: new Map(sections.map((section) => [section.path, guideResult(section, { by: 'meaning' })]))
+            matches: new GuideMatches(sections, GUIDE_SITE),
+            byPath: new Map(
+                sections.map((section) => [section.path, guideResult(section, { by: 'meaning' }, GUIDE_SITE)])
+            )
         };
     });
 

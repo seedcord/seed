@@ -6,8 +6,9 @@
       "name": "seed",
       "dependencies": {
         "@discordjs/builders": "^1.15.0",
+        "@seedcord/brand": "./seedcord-brand-0.0.0.tgz",
         "@seedcord/docs-search": "./seedcord-docs-search-0.0.0.tgz",
-        "@seedcord/http": "^0.12.0-next.2",
+        "@seedcord/http": "^0.12.0",
         "envapt": "^9.2.0",
       },
       "devDependencies": {
@@ -20,7 +21,7 @@
         "eslint": "^10.13.0",
         "jiti": "^2.7.0",
         "prettier": "^3.9.10",
-        "seedcord": "^0.23.0-next.2",
+        "seedcord": "^0.23.0",
         "typescript": "~6.0",
         "vite": "^8.3.4",
       },
@@ -227,13 +228,15 @@
 
     "@sapphire/snowflake": ["@sapphire/snowflake@3.5.5", "", {}, "sha512-xzvBr1Q1c4lCe7i6sRnrofxeO1QTP/LKQ6A6qy0iB4x5yfiSfARMEQEghojzTNALDTcv8En04qYNIco9/K9eZQ=="],
 
-    "@seedcord/core": ["@seedcord/core@0.12.0-next.2", "", { "dependencies": { "@discordjs/rest": "^2.6.3", "@seedcord/custom-id": "^0.3.1-next.1", "@seedcord/errors": "^0.15.0-next.2", "@seedcord/event-emitter": "^0.2.0", "@seedcord/logger": "^0.6.0-next.1", "@seedcord/types": "^0.16.0-next.1", "@seedcord/utils": "^0.9.1-next.1", "discord-api-types": "^0.38.52", "reflect-metadata": "^0.2.2", "type-fest": "^5.9.0", "verkit": "^0.5.0" }, "peerDependencies": { "@discordjs/builders": "^1.14.1", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-DrriAy7MAGP8hxHH+bfDj2Y+ix1dXUU6HNUrnLnOtrzHYJpZqfTSJKQl03VzMMXGYBOdiOUhus2WgRjE+sKciA=="],
+    "@seedcord/brand": ["@seedcord/brand@./seedcord-brand-0.0.0.tgz", {}, "sha512-IKOaa5t1gPZD2ML/cFRpIjyALAbonDNxdZMArlfvq67SFReGMYD8KODqx49V6Rd/R4HxWKUZvS4HNhdhkjnn9Q=="],
 
-    "@seedcord/custom-id": ["@seedcord/custom-id@0.3.1-next.1", "", { "dependencies": { "@seedcord/errors": "^0.15.0-next.2", "discord-api-types": "^0.38.52", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-BTVxOPD2BhupU4Vc+lh1zAmZE7q29KDBrQJje6EiYaK0vUlb6uZSem3Ze1hbi9CFARz4+j2QGsTrQdPl8wwGRA=="],
+    "@seedcord/core": ["@seedcord/core@0.12.0", "", { "dependencies": { "@discordjs/rest": "^2.6.3", "@seedcord/custom-id": "^0.3.1", "@seedcord/errors": "^0.15.0", "@seedcord/event-emitter": "^0.2.0", "@seedcord/logger": "^0.6.0", "@seedcord/types": "^0.16.0", "@seedcord/utils": "^0.9.1", "discord-api-types": "^0.38.52", "reflect-metadata": "^0.2.2", "type-fest": "^5.9.0", "verkit": "^0.5.0" }, "peerDependencies": { "@discordjs/builders": "^1.14.1", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-7tdKrk7v5AJFQxh924CIrDTPSsFDsTrUmNa4YAej/ORVigTuof4Eq9zQixH8JNpoh7vgRj8KUGoQ9b0nRXJ0kQ=="],
 
-    "@seedcord/docs-search": ["@seedcord/docs-search@./seedcord-docs-search-0.0.0.tgz", { "dependencies": { "@leeoniya/ufuzzy": "^1.0.19", "fumadocs-core": "16.15.18" } }, "sha512-bwjQ1CjpAtYCiqNWGaK/aVNTRIi6HKaL1sSM8cEd1Dv0k7g2Dqnk05aIjLip12ZcBakVuSQRlLfY7YZMa0FjeQ=="],
+    "@seedcord/custom-id": ["@seedcord/custom-id@0.3.1", "", { "dependencies": { "@seedcord/errors": "^0.15.0", "discord-api-types": "^0.38.52", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-1KuGR9XxHO+IXN8zcHlPgl2ygwrlyToYmy1W75azqmhNzKAco83ORK7owy8HwsEtyUqMNcl/tV/LSVwTh1hB3A=="],
 
-    "@seedcord/errors": ["@seedcord/errors@0.15.0-next.2", "", { "dependencies": { "chalk": "^6.0.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-0JtDnVI0Xa2YRGP/w8EA/N9QkSGN1qF1c1FlwM2pDm4dV0cXBX1ZeW6wCoE6qIbI8P1brzoz3cnL0SltyrexXQ=="],
+    "@seedcord/docs-search": ["@seedcord/docs-search@./seedcord-docs-search-0.0.0.tgz", { "dependencies": { "@leeoniya/ufuzzy": "^1.0.19", "fumadocs-core": "16.15.18" } }, "sha512-csltT+rz7groAEq7aT0ZtnFuu5aMy7vN99KkWccIMIfvwnKpTV48AQUbz6j+k8gAWjTp+Dz4kfABhuXIIbDRKQ=="],
+
+    "@seedcord/errors": ["@seedcord/errors@0.15.0", "", { "dependencies": { "chalk": "^6.0.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-NZXucJS6FtmPlfegvg6RLjirBFnnUxiiY5UmXu69U1dZLBjUouX6guTiulxu7J1KENpCO9RBrurJ+6fAaomzCA=="],
 
     "@seedcord/eslint-config": ["@seedcord/eslint-config@3.0.1-next.2", "", { "dependencies": { "@seedcord/eslint-plugin": "^0.5.1-next.1", "@types/eslint-plugin-security": "^3.0.1", "@typescript-eslint/parser": "^8.65.0", "es-toolkit": "^1.53.0", "eslint-config-prettier": "^10.1.8", "eslint-import-resolver-typescript": "^4.4.5", "eslint-plugin-discordjs": "^0.2.1-next.0", "eslint-plugin-import-x": "^4.17.1", "eslint-plugin-security": "^4.0.1", "eslint-plugin-tsdoc": "^0.5.4", "eslint-plugin-unicorn": "^76.0.0", "prettier": "^3.9.6", "typescript-eslint": "^8.65.0" }, "peerDependencies": { "eslint": "^9.22.0 || ^10.4.0", "eslint-plugin-better-tailwindcss": "^4.7.0", "eslint-plugin-mdx": "^3.8.1", "eslint-plugin-tailwind-canonical-classes": "^1.4.1", "prettier-plugin-tailwindcss": "^0.8.1", "tailwindcss": "^4.3.3", "typescript": ">=5.9.3 <6.1.0" }, "optionalPeers": ["eslint-plugin-better-tailwindcss", "eslint-plugin-mdx", "eslint-plugin-tailwind-canonical-classes", "prettier-plugin-tailwindcss", "tailwindcss"] }, "sha512-AEzKIv+dX4SNLCfRpLb2fk+5Y0QiZ0jp+4AboTbNuKosdG26ejlzY/iG0PVlej4ziNxaCH67/WrjJHO3cKjwog=="],
 
@@ -241,15 +244,15 @@
 
     "@seedcord/event-emitter": ["@seedcord/event-emitter@0.2.0", "", { "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-JrMw4u2rYN1hqR9KysBGdOaf2tGLvQWgNWGecERA+Bm4cRkcAqYYWkzE4TRCPyPFcyGe1B+EPqa+DCwtN7NQgw=="],
 
-    "@seedcord/http": ["@seedcord/http@0.12.0-next.2", "", { "dependencies": { "@discordjs/collection": "^2.1.1", "@discordjs/core": "^2.6.0", "@discordjs/rest": "^2.6.3", "@seedcord/core": "^0.12.0-next.2", "@seedcord/custom-id": "^0.3.1-next.1", "@seedcord/errors": "^0.15.0-next.2", "@seedcord/event-emitter": "^0.2.0", "@seedcord/logger": "^0.6.0-next.1", "@seedcord/types": "^0.16.0-next.1", "@seedcord/utils": "^0.9.1-next.1", "discord-api-types": "^0.38.52", "reflect-metadata": "^0.2.2", "type-fest": "^5.9.0" }, "peerDependencies": { "@discordjs/builders": "^1.14.1", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-GrIWY6CQoI3SXsB2G7+fp+GNhrQ0gnEKewtTZmYGPfeFBAa9yFpwotWFN+vc7lEGWMC9nOVbxHFoStWHg58tkg=="],
+    "@seedcord/http": ["@seedcord/http@0.12.0", "", { "dependencies": { "@discordjs/collection": "^2.1.1", "@discordjs/core": "^2.6.0", "@discordjs/rest": "^2.6.3", "@seedcord/core": "^0.12.0", "@seedcord/custom-id": "^0.3.1", "@seedcord/errors": "^0.15.0", "@seedcord/event-emitter": "^0.2.0", "@seedcord/logger": "^0.6.0", "@seedcord/types": "^0.16.0", "@seedcord/utils": "^0.9.1", "discord-api-types": "^0.38.52", "reflect-metadata": "^0.2.2", "type-fest": "^5.9.0" }, "peerDependencies": { "@discordjs/builders": "^1.14.1", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-eNxDbCD1m7Eej1aYT9EY13yHIDCgQx9JzJMpzfhLfseynaSMcNTKzmXjN5Zb5ozHuLk1eD24W41/X+dnsdhK0g=="],
 
-    "@seedcord/logger": ["@seedcord/logger@0.6.0-next.1", "", { "dependencies": { "@seedcord/errors": "^0.15.0-next.2", "@seedcord/types": "^0.16.0-next.1", "@seedcord/utils": "^0.9.1-next.1", "chalk": "^6.0.0", "winston": "^3.19.0" }, "peerDependencies": { "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-st8UNoUFDv+Jjdti2S9bzcgZk+qfGFtuB36kOaR7n1GZeDyK1ywPHh7M9qFFOmDexvdv4AcZjW2VfclVHwbPzg=="],
+    "@seedcord/logger": ["@seedcord/logger@0.6.0", "", { "dependencies": { "@seedcord/errors": "^0.15.0", "@seedcord/types": "^0.16.0", "@seedcord/utils": "^0.9.1", "chalk": "^6.0.0", "winston": "^3.19.0" }, "peerDependencies": { "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-nVRGUasDSr1Wzj6Fw7xxZQ9XlRWCF/b+qsruaYH4cLyD1i1Q5QkxDHMkWYAyUc0cJXsq9OZBOfN0PZDkE4CXdg=="],
 
     "@seedcord/tsconfig": ["@seedcord/tsconfig@3.0.0", "", {}, "sha512-a97YlNbe7gk4z+uxcqlawuA+iRVBUucDCF7S/rE9YwFTcpCyZa/TnyiQP+P9Zi4TzJICBmfILJCcwHjbMblfew=="],
 
-    "@seedcord/types": ["@seedcord/types@0.16.0-next.1", "", { "dependencies": { "@discordjs/rest": "^2.6.3", "discord-api-types": "^0.38.52", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-I4iSIhrLSK4BUk1xUCkhc8XEV2lfzTeglDqSnik1aUG9jkkg1LV6NraOjeRD/Y50/V8L7hVpKbX2nsC6QOl/6g=="],
+    "@seedcord/types": ["@seedcord/types@0.16.0", "", { "dependencies": { "@discordjs/rest": "^2.6.3", "discord-api-types": "^0.38.52", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-1SesWblm3Q99rjy21A3zWbhNSw0E+IkoDxLFfvg3cAWwRX5hlHFJ97KLNGFypNZyb3Pfj5VTjgC5rcJJdZ9JpA=="],
 
-    "@seedcord/utils": ["@seedcord/utils@0.9.1-next.1", "", { "dependencies": { "@seedcord/errors": "^0.15.0-next.2", "@seedcord/types": "^0.16.0-next.1", "discord-api-types": "^0.38.52", "strip-ansi": "^7.2.0", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-YHMu3j9IVt4Qo7WwkpDRLgrZvUfkFXsvQZbZWns4JmhN2ySMnpm1cX64bepJng6qSj50mmNjJgYEohxy8Qpavg=="],
+    "@seedcord/utils": ["@seedcord/utils@0.9.1", "", { "dependencies": { "@seedcord/errors": "^0.15.0", "@seedcord/types": "^0.16.0", "discord-api-types": "^0.38.52", "strip-ansi": "^7.2.0", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-+wjO34qXTS4ID2vqLAaYlYSUyQ8oirjaqcPmbnCMn9AKcH8ohNQkbj83alaPSNC2D5lTlKSMelB6wmN7RJCyWw=="],
 
     "@shikijs/core": ["@shikijs/core@4.6.0", "", { "dependencies": { "@shikijs/primitive": "4.6.0", "@shikijs/types": "4.6.0", "@shikijs/vscode-textmate": "^10.1.0", "@types/hast": "^3.0.5", "hast-util-to-html": "^9.0.6" } }, "sha512-bfd4OKgvoyXYiYmMRuleA656P4V7M/Du9lcTl38Ngm6KszMj7bq4J1IGZwSYR4c95Tv5UQALtYNWUwaI9UT3xw=="],
 
@@ -931,7 +934,7 @@
 
     "scroll-into-view-if-needed": ["scroll-into-view-if-needed@3.1.0", "", { "dependencies": { "compute-scroll-into-view": "^3.0.2" } }, "sha512-49oNpRjWRvnU8NyGVmUaYG4jtTkNonFZI86MmGRDqBphEK2EXT9gdEUoQPZhuBM8yWHxCWbobltqYO5M4XrUvQ=="],
 
-    "seedcord": ["seedcord@0.23.0-next.2", "", { "dependencies": { "@cloudflare/build-output-utils": "0.9.6", "@cloudflare/config": "0.29.0", "@commander-js/extra-typings": "^15.0.0", "@discordjs/rest": "^2.6.3", "@leeoniya/ufuzzy": "^1.0.19", "@seedcord/core": "^0.12.0-next.2", "@seedcord/errors": "^0.15.0-next.2", "@seedcord/event-emitter": "^0.2.0", "@seedcord/logger": "^0.6.0-next.1", "@seedcord/types": "^0.16.0-next.1", "@seedcord/utils": "^0.9.1-next.1", "chalk": "^6.0.0", "cli-spinners": "^3.4.0", "commander": "^15.0.0", "discord-api-types": "^0.38.52", "es-toolkit": "^1.53.0", "handlebars": "^4.7.10", "ink": "^8.0.0", "minimatch": "^10.2.6", "react": "^19.3.1", "reflect-metadata": "^0.2.2", "rolldown": "~1.2.12", "rolldown-plugin-dts": "0.28.8", "verkit": "^0.5.0", "wrap-ansi": "^10.0.0" }, "peerDependencies": { "@cloudflare/vite-plugin": "2.0.0-beta.v.8", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0", "vite": "^8.3.4" }, "optionalPeers": ["@cloudflare/vite-plugin"], "bin": { "seedcord": "./bin/seedcord.mjs" } }, "sha512-HziWeFo9Ukn2Q13UxWjBsFSlcaxo4HmqBvfYl/4xf4lthOPTPEXu8xKKFJJh+0R1FUXSgqjDe69g0mzbKfQ+3w=="],
+    "seedcord": ["seedcord@0.23.0", "", { "dependencies": { "@cloudflare/build-output-utils": "0.9.6", "@cloudflare/config": "0.29.0", "@commander-js/extra-typings": "^15.0.0", "@discordjs/rest": "^2.6.3", "@leeoniya/ufuzzy": "^1.0.19", "@seedcord/core": "^0.12.0", "@seedcord/errors": "^0.15.0", "@seedcord/event-emitter": "^0.2.0", "@seedcord/logger": "^0.6.0", "@seedcord/types": "^0.16.0", "@seedcord/utils": "^0.9.1", "chalk": "^6.0.0", "cli-spinners": "^3.4.0", "commander": "^15.0.0", "discord-api-types": "^0.38.52", "es-toolkit": "^1.53.0", "handlebars": "^4.7.10", "ink": "^8.0.0", "minimatch": "^10.2.6", "react": "^19.3.1", "reflect-metadata": "^0.2.2", "rolldown": "~1.2.12", "rolldown-plugin-dts": "0.28.8", "verkit": "^0.5.0", "wrap-ansi": "^10.0.0" }, "peerDependencies": { "@cloudflare/vite-plugin": "2.0.0-beta.v.8", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0", "vite": "^8.3.4" }, "optionalPeers": ["@cloudflare/vite-plugin"], "bin": { "seedcord": "./bin/seedcord.mjs" } }, "sha512-QezlpKrXsoy7l66lYxQgeEE19KJSiFaecCrudGT025CNS1JPYW9ZnNF3mwzbN+gniDm675SuPfEnEPDNx4MSOQ=="],
 
     "semver": ["semver@7.8.5", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA=="],
 
