@@ -15,6 +15,7 @@
         "commands": "seedcord commands",
         "ask": "seedcord ask",
         "commands:deploy": "seedcord commands deploy",
+        "release": "NODE_ENV=production bun run commands:deploy && bun run deploy",
         "tc": "tsc --noEmit",
         "lint": "eslint \"src/**/*.ts\" --cache",
         "lint:fix": "eslint \"src/**/*.ts\" --fix --cache",
