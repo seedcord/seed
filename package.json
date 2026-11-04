@@ -25,11 +25,11 @@
         "postinstall": "cf workers types"
     },
     "devDependencies": {
-        "@cloudflare/vite-plugin": "2.0.0-beta.v.0",
+        "@cloudflare/vite-plugin": "2.0.0-beta.v.8",
         "@seedcord/eslint-config": "^3.0.1-next.2",
         "@seedcord/tsconfig": "^3.0.0",
         "@types/node": "^26.6.5",
-        "cf": "1.0.0-beta.17",
+        "cf": "1.0.0-beta.26",
         "discord-api-types": "^0.38.57",
         "eslint": "^10.13.0",
         "jiti": "^2.7.0",
