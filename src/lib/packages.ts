@@ -19,7 +19,6 @@ export const PACKAGE_GROUPS = {
         { name: '@seedcord/types', description: 'Shared types' },
         { name: '@seedcord/utils', description: 'Small helpers' },
         { name: '@seedcord/custom-id', description: 'Typed custom IDs' },
-        { name: '@seedcord/rate-limiter', description: 'Rate limiting' },
         { name: '@seedcord/event-emitter', description: 'Event emitter' }
     ],
     Plugins: [

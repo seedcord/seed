@@ -234,7 +234,7 @@
 
     "@seedcord/custom-id": ["@seedcord/custom-id@0.3.1", "", { "dependencies": { "@seedcord/errors": "^0.15.0", "discord-api-types": "^0.38.52", "type-fest": "^5.9.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-1KuGR9XxHO+IXN8zcHlPgl2ygwrlyToYmy1W75azqmhNzKAco83ORK7owy8HwsEtyUqMNcl/tV/LSVwTh1hB3A=="],
 
-    "@seedcord/docs-search": ["@seedcord/docs-search@./seedcord-docs-search-0.0.0.tgz", { "dependencies": { "@leeoniya/ufuzzy": "^1.0.19", "fumadocs-core": "16.15.18" } }, "sha512-GVxE6+xYq+hIoHTJOji8bh7xfD+SFOC2M/QTtqGtuzadFZ7XkfAaMiH9sdXNOjARt4rLlqRseILs4LsnNDR1OA=="],
+    "@seedcord/docs-search": ["@seedcord/docs-search@./seedcord-docs-search-0.0.0.tgz", { "dependencies": { "@leeoniya/ufuzzy": "^1.0.19", "fumadocs-core": "16.15.18" } }, "sha512-rZ1EvJzGHugVS8a0riDvUQZ49S0bI98AlnzNFILX5ABFg7bHO0ZFMt9VFp3An4tuJM4cvHxf0xV1D/f2id0qaQ=="],
 
     "@seedcord/errors": ["@seedcord/errors@0.15.0", "", { "dependencies": { "chalk": "^6.0.0" }, "peerDependencies": { "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-NZXucJS6FtmPlfegvg6RLjirBFnnUxiiY5UmXu69U1dZLBjUouX6guTiulxu7J1KENpCO9RBrurJ+6fAaomzCA=="],
 
