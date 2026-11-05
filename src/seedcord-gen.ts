@@ -26,7 +26,9 @@ declare module '@seedcord/http' {
         'Answer with docs': { cache: undefined };
     }
     interface EmojiMap {
+        Caret: 'application';
         Core: 'application';
+        Dot: 'application';
         Latest: 'application';
         Libs: 'application';
         Next: 'application';

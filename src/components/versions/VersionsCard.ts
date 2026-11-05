@@ -15,7 +15,7 @@ export class VersionsCard extends BuilderComponent<'container'> {
         this.instance
             .addTextDisplayComponents((text) =>
                 text.setContent(
-                    `## ${Emojis[view.tab]} ${view.tab} · ${countOf(packages.length, 'package', 'packages')}`
+                    `## ${Emojis[view.tab]} ${view.tab}${Emojis.Dot}${countOf(packages.length, 'package', 'packages')}`
                 )
             )
             .addActionRowComponents(new GroupTabs(view).component)

@@ -1,5 +1,5 @@
 import { ButtonBuilder } from '@discordjs/builders';
-import { BuilderComponent, toEpochSeconds } from '@seedcord/http';
+import { BuilderComponent, Emojis, toEpochSeconds } from '@seedcord/http';
 import { ButtonStyle } from 'discord-api-types/v10';
 
 import type { VersionsView } from '#components/versions/view';
@@ -12,7 +12,7 @@ export class VersionRow extends BuilderComponent<'section'> {
         super('section');
 
         const published = pkg[channel];
-        const released = published ? ` · <t:${toEpochSeconds(published.publishedAt)}:R>` : '';
+        const released = published ? `${Emojis.Dot}<t:${toEpochSeconds(published.publishedAt)}:R>` : '';
 
         this.instance
             .addTextDisplayComponents((text) =>

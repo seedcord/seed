@@ -19,7 +19,9 @@ export default new Seedcord({
             Plugins: 'plugins',
             Tools: 'tools',
             Latest: 'latest',
-            Next: 'next'
+            Next: 'next',
+            Caret: 'caret',
+            Dot: 'dot'
         }
     },
     subscribers: {

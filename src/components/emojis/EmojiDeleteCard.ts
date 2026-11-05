@@ -1,4 +1,4 @@
-import { BuilderComponent, paginate } from '@seedcord/http';
+import { BuilderComponent, Emojis, paginate } from '@seedcord/http';
 
 import { ConfirmButtons } from '#components/emojis/ConfirmButtons';
 import { EmojiPicker } from '#components/emojis/EmojiPicker';
@@ -20,7 +20,7 @@ export class EmojiDeleteCard extends BuilderComponent<'container'> {
 
         this.instance.addTextDisplayComponents((text) =>
             text.setContent(
-                `## Delete ${scope} emojis\n-# ${countOf(emojis.length, 'emoji', 'emojis')} · page ${shown.page + 1} of ${shown.totalPages ?? 1}`
+                `## Delete ${scope} emojis\n-# ${countOf(emojis.length, 'emoji', 'emojis')}${Emojis.Dot}page ${shown.page + 1} of ${shown.totalPages ?? 1}`
             )
         );
 
