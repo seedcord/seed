@@ -26,6 +26,11 @@ import type {
 
 type Transport = 'http' | 'gateway';
 
+export interface AskedSearch {
+    question: string;
+    section: GuideResult;
+}
+
 interface DocsFilter {
     kind: KindFilter | null;
     transport: Transport | null;
@@ -33,6 +38,9 @@ interface DocsFilter {
 }
 
 const MAX_CHOICES = 25;
+const ASKED_SEARCHES = 'asked-searches';
+// eslint-disable-next-line no-magic-numbers
+const ASKED_SEARCH_TTL_MS = 24 * 60 * 60 * 1000;
 
 const OTHER_TRANSPORT_PACKAGE: Record<Transport, string> = {
     http: '@seedcord/gateway',
@@ -64,6 +72,14 @@ export class Search extends Plugin {
 
     public async init(): Promise<void> {
         this.referenceIndex = await this.referenceSearch.results();
+    }
+
+    public async rememberSearch(searchId: string, search: AskedSearch): Promise<void> {
+        await this.kv.collection<AskedSearch>(ASKED_SEARCHES).set(searchId, search, ASKED_SEARCH_TTL_MS);
+    }
+
+    public async askedSearch(searchId: string): Promise<AskedSearch | undefined> {
+        return await this.kv.collection<AskedSearch>(ASKED_SEARCHES).get(searchId);
     }
 
     public async guide(query: string): Promise<GuideResult[]> {

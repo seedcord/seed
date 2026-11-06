@@ -1,36 +1,51 @@
 import { currentTime, Notice } from '@seedcord/http';
+import { ComponentType } from 'discord-api-types/v10';
 
-export class NoSearchResults extends Notice {
-    constructor() {
-        super('No results found. Try a different query.');
+import type { ReplyResponse } from '@seedcord/http';
+
+abstract class TextNotice extends Notice {
+    public override render(): ReplyResponse {
+        return { components: [{ type: ComponentType.TextDisplay, content: this.message }] };
     }
 }
 
-export class NoGuideMatch extends Notice {
+export class NoSearchResults extends TextNotice {
     constructor() {
-        super('No guide section matches that message.');
+        super('**Nothing found.** Try different words.');
     }
 }
 
-export class GuideSectionGone extends Notice {
+export class NoGuideMatch extends TextNotice {
     constructor() {
-        super('That section no longer exists.');
+        super('Nothing in the guide matches that message.');
     }
 }
 
-export class GuideOutOfAllowance extends Notice {
+export class AskedSearchGone extends TextNotice {
+    constructor() {
+        super('**This search is too old to report.** Run it again if you still want to.');
+    }
+}
+
+export class GuideSectionGone extends TextNotice {
+    constructor() {
+        super("That section isn't in the guide anymore.");
+    }
+}
+
+export class GuideOutOfAllowance extends TextNotice {
     constructor(retryAfterSeconds: number) {
-        super(`The guide search is out of its daily allowance. Try again <t:${currentTime() + retryAfterSeconds}:R>.`);
+        super(`Guide search is out for today. Try again **<t:${currentTime() + retryAfterSeconds}:R>**.`);
     }
 }
 
-export class UnknownCommand extends Notice {
+export class UnknownCommand extends TextNotice {
     constructor(name: string) {
-        super(`I don't have a \`${name}\` command. Pick one from the suggestions.`);
+        super(`\`${name}\` isn't one of my commands. Pick one from the suggestions.`);
     }
 }
 
-export class NoImagesInMessage extends Notice {
+export class NoImagesInMessage extends TextNotice {
     constructor() {
         super("That message doesn't have any images.");
     }

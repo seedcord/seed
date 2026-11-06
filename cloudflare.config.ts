@@ -11,6 +11,7 @@ export default defineConfig(({ mode = 'production' }) => ({
             HANDLED_EXCEPTION_WEBHOOK_URL: bindings.secret(),
             TESTING_GUILD_IDS: bindings.secret(),
             ENV: bindings.text(mode),
+            DB: bindings.d1(),
             GUIDE: bindings.worker({
                 worker: mode === 'production' ? 'seedcord-guide' : 'seedcord-guide-next',
                 dev: { remote: true }

@@ -1,10 +1,17 @@
-import { Seedcord } from '@seedcord/http';
+import { Seedcord, UnstorageDriver } from '@seedcord/http';
+import { createDatabase } from 'db0';
+import cloudflareD1 from 'db0/connectors/cloudflare-d1';
 import { Converters, Envapter } from 'envapt';
+import { createStorage } from 'unstorage';
+import db0Driver from 'unstorage/drivers/db0';
 
 import { Search } from './plugins/Search';
 import { Versions } from './plugins/Versions';
 
+const database = createDatabase(cloudflareD1({ bindingName: 'DB' }));
+
 export default new Seedcord({
+    kv: new UnstorageDriver(createStorage({ driver: db0Driver({ database }) })),
     bot: {
         interactions: {
             path: './handlers'
@@ -25,7 +32,7 @@ export default new Seedcord({
         }
     },
     subscribers: {
-        path: null
+        path: './subscribers'
     },
     botColor: '#f8555a',
     ownerIds: ['287135364127129601'],

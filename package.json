@@ -43,6 +43,8 @@
         "@seedcord/brand": "./seedcord-brand-0.0.0.tgz",
         "@seedcord/docs-search": "./seedcord-docs-search-0.0.0.tgz",
         "@seedcord/http": "^0.12.0",
-        "envapt": "^9.2.0"
+        "db0": "^0.4.2",
+        "envapt": "^9.2.0",
+        "unstorage": "^2.0.0-beta.0"
     }
 }
