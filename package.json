@@ -26,7 +26,7 @@
     },
     "devDependencies": {
         "@cloudflare/vite-plugin": "2.0.0-beta.v.8",
-        "@seedcord/eslint-config": "^3.0.1-next.2",
+        "@seedcord/eslint-config": "^3.0.1",
         "@seedcord/tsconfig": "^3.0.0",
         "@types/node": "^26.6.5",
         "cf": "1.0.0-beta.26",
@@ -34,7 +34,7 @@
         "eslint": "^10.13.0",
         "jiti": "^2.7.0",
         "prettier": "^3.9.10",
-        "seedcord": "^0.23.0",
+        "seedcord": "^0.23.2",
         "typescript": "~6.0",
         "vite": "^8.3.4"
     },
@@ -42,7 +42,7 @@
         "@discordjs/builders": "^1.15.0",
         "@seedcord/brand": "./seedcord-brand-0.0.0.tgz",
         "@seedcord/docs-search": "./seedcord-docs-search-0.0.0.tgz",
-        "@seedcord/http": "^0.12.0",
+        "@seedcord/http": "^0.13.0",
         "db0": "^0.4.2",
         "envapt": "^9.2.0",
         "unstorage": "^2.0.0-beta.0"
