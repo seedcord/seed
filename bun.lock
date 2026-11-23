@@ -230,7 +230,7 @@
 
     "@sapphire/snowflake": ["@sapphire/snowflake@3.5.5", "", {}, "sha512-xzvBr1Q1c4lCe7i6sRnrofxeO1QTP/LKQ6A6qy0iB4x5yfiSfARMEQEghojzTNALDTcv8En04qYNIco9/K9eZQ=="],
 
-    "@seedcord/brand": ["@seedcord/brand@./seedcord-brand-0.0.0.tgz", {}, "sha512-IKOaa5t1gPZD2ML/cFRpIjyALAbonDNxdZMArlfvq67SFReGMYD8KODqx49V6Rd/R4HxWKUZvS4HNhdhkjnn9Q=="],
+    "@seedcord/brand": ["@seedcord/brand@./seedcord-brand-0.0.0.tgz", {}, "sha512-lEO1KBtq7Z8wftnnNkPBq2bgfobVRkQntmHSdLiagIRLYj/pzTgiKz7/jRmR8k0Z0GJooT6IJ1m0C4+fRW/9Mg=="],
 
     "@seedcord/core": ["@seedcord/core@0.14.0", "", { "dependencies": { "@discordjs/rest": "^2.6.3", "@seedcord/custom-id": "^0.3.2", "@seedcord/errors": "^0.16.0", "@seedcord/event-emitter": "^0.2.2", "@seedcord/logger": "^0.7.0", "@seedcord/types": "^0.17.0", "@seedcord/utils": "^0.10.0", "discord-api-types": "^0.38.59", "reflect-metadata": "^0.2.2", "type-fest": "^5.10.0", "verkit": "^0.5.0" }, "peerDependencies": { "@discordjs/builders": "^1.14.1", "envapt": "^9.2.0", "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0" } }, "sha512-ctLusYHrNIXS44nkGr1wU/Qho//uI70c2WfA2fTYLpm469tKeXqx9+XbwZf+mKLVExj3Juuj1TL7i7aWGaDM+g=="],
 

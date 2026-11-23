@@ -8,6 +8,7 @@ import type { APIUser } from 'discord-api-types/v10';
 export interface GuideMissReport extends AskedSearch {
     lookingFor: string;
     user: APIUser;
+    where: string;
 }
 
 // gotta make sure no pings. also i'm p sure there's a
@@ -15,7 +16,7 @@ export interface GuideMissReport extends AskedSearch {
 const withoutMentions = (text: string): string => text.replaceAll('@', '@\u200B');
 
 export class GuideMissCard extends BuilderComponent<'container'> {
-    constructor({ question, section: { page, heading, url }, lookingFor, user }: GuideMissReport) {
+    constructor({ question, section: { page, heading, url }, lookingFor, user, where }: GuideMissReport) {
         super('container');
 
         this.instance
@@ -40,6 +41,8 @@ export class GuideMissCard extends BuilderComponent<'container'> {
 
         this.instance
             .addSeparatorComponents((separator) => separator)
-            .addTextDisplayComponents((text) => text.setContent(`-# user id \`${user.id}\``));
+            .addTextDisplayComponents((text) =>
+                text.setContent(`-# in ${withoutMentions(where)}${Emojis.Dot}user id \`${user.id}\``)
+            );
     }
 }
