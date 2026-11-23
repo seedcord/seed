@@ -23,7 +23,10 @@ export const PACKAGE_GROUPS = {
     ],
     Plugins: [
         { name: '@seedcord/plugin-mongoose', description: 'MongoDB plugin' },
-        { name: '@seedcord/plugin-kysely-postgres', description: 'Postgres plugin' }
+        { name: '@seedcord/plugin-kysely', description: 'SQL family plugin' },
+        { name: '@seedcord/plugin-i18n', description: 'Translations with Fluent' },
+        { name: '@seedcord/plugin-tasks', description: 'Cron and scheduled tasks' },
+        { name: '@seedcord/plugin-oauth', description: 'Discord login and user API' }
     ],
     Tools: [
         { name: '@seedcord/eslint-config', description: 'ESLint config' },

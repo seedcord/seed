@@ -3,6 +3,7 @@ import { Cooldown, Gated, MessageContextMenuHandler, MessageContextMenuRoute } f
 
 import { SectionPicker } from '#components/SectionPicker';
 import { NoGuideMatch } from '#lib/notices';
+import { withoutDiscordMarkup } from '#lib/text';
 
 import type { APIAttachment } from 'discord-api-types/v10';
 
@@ -25,7 +26,7 @@ export class AnswerWithDocs extends MessageContextMenuHandler<'Answer with docs'
         await this.defer();
 
         const { author, content, attachments } = this.target;
-        const { question } = questionFromText(`${content}\n${await pastedText(attachments)}`);
+        const { question } = questionFromText(withoutDiscordMarkup(`${content}\n${await pastedText(attachments)}`));
         const hits = question ? await this.core.search.guideHits(question) : [];
         if (hits.length === 0) throw new NoGuideMatch();
 

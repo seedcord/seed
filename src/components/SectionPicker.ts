@@ -1,7 +1,7 @@
 import { StringSelectMenuBuilder } from '@discordjs/builders';
 import { CustomId, RowComponent } from '@seedcord/http';
 
-import { sectionName } from '#lib/text';
+import { sectionContext, sectionName } from '#lib/text';
 
 import type { GuideResult } from '@seedcord/docs-search';
 
@@ -15,7 +15,13 @@ export class SectionPicker extends RowComponent<'menu_string'> {
             new StringSelectMenuBuilder()
                 .setCustomId(SectionPickId.encode({ authorId }))
                 .setPlaceholder('Pick a section to send')
-                .addOptions(sections.map((section) => ({ label: sectionName(section), value: section.path })))
+                .addOptions(
+                    sections.map((section) => ({
+                        label: sectionName(section),
+                        description: sectionContext(section),
+                        value: section.path
+                    }))
+                )
         );
     }
 }

@@ -39,7 +39,6 @@ interface DocsFilter {
 
 const MAX_CHOICES = 25;
 const ASKED_SEARCHES = 'asked-searches';
-// eslint-disable-next-line no-magic-numbers
 const ASKED_SEARCH_TTL_MS = 24 * 60 * 60 * 1000;
 
 const OTHER_TRANSPORT_PACKAGE: Record<Transport, string> = {
@@ -93,7 +92,8 @@ export class Search extends Plugin {
     }
 
     public async guideHits(query: string): Promise<GuideResult[]> {
-        const picked = await this.guideSection(query);
+        const { matches, byPath } = await this.guideIndex();
+        const picked = byPath.get(query);
         if (picked) return [picked];
 
         const question = parseQuestion(query);
@@ -101,7 +101,7 @@ export class Search extends Plugin {
 
         const answer = await guideWorker().ask(question);
         if ('retryAfterSeconds' in answer) throw new GuideOutOfAllowance(answer.retryAfterSeconds);
-        return answer.hits;
+        return matches.withOpenings(answer.hits);
     }
 
     public async docs(query: string, { kind, transport, prerelease }: DocsFilter): Promise<ReferenceSearchResult[]> {
