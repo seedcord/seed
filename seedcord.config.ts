@@ -1,8 +1,10 @@
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'seedcord';
 
 export default defineConfig({
     root: './src',
     instance: './bot.ts',
+    vitePlugins: () => [tailwindcss()],
     dev: {
         // set false to hold the running arc and live dot still, which cuts idle redraws by ~80%
         idleAnimation: true,

@@ -1,6 +1,6 @@
 # seed
 
-A Discord bot built with [seedcord](https://seedcord.org). It runs on Cloudflare Workers, and you can [add it to a server or install it on your account](https://discord.com/oauth2/authorize?client_id=1195232619718254663).
+A Discord bot built with [seedcord](https://seedcord.org). It runs on Cloudflare Workers, and you can [add it to a server or install it on your account](https://bot.seedcord.org).
 
 ## Commands
 
@@ -32,6 +32,10 @@ Both `/search` commands reply only to you by default, and each one allows 10 use
 
 The app emoji commands only work for me.
 
+### Roles
+
+- `/roles`: only works in the seedcord server. Connect your GitHub to get **Org member** if you're a public member of the org, and **Contributor** once you have a merged PR. Grab them from Linked Roles in the server menu. `Refresh` checks GitHub again.
+
 ## Running it
 
 ```sh
@@ -51,6 +55,8 @@ This opens a tunnel for Discord and hot reloads your changes. Run `bun run check
 | key | required |
 | --- | --- |
 | `DISCORD_BOT_TOKEN` | yes |
+| `DISCORD_CLIENT_SECRET` | yes, from the app's OAuth2 page |
+| `GITHUB_TOKEN` | yes, a fine-grained token with read-only access to public repositories |
 | `UNKNOWN_EXCEPTION_WEBHOOK_URL` | no |
 | `HANDLED_EXCEPTION_WEBHOOK_URL` | no |
 | `TESTING_GUILD_IDS` | no, empty deploys your commands globally |

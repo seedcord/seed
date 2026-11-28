@@ -45,6 +45,18 @@ export class UnknownCommand extends TextNotice {
     }
 }
 
+export class RolesNotConnected extends TextNotice {
+    constructor() {
+        super("**You haven't connected yet.** Click `Connect` first, then try again.");
+    }
+}
+
+export class RolesRefused extends TextNotice {
+    constructor(message: string) {
+        super(message);
+    }
+}
+
 export class NoImagesInMessage extends TextNotice {
     constructor() {
         super("That message doesn't have any images.");

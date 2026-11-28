@@ -12,6 +12,7 @@ import {
     ReferenceSearch
 } from '@seedcord/docs-search';
 import { Plugin } from '@seedcord/http';
+import { Envapter } from 'envapt';
 
 import { GuideOutOfAllowance } from '#lib/notices';
 
@@ -48,7 +49,7 @@ const OTHER_TRANSPORT_PACKAGE: Record<Transport, string> = {
 
 const guideWorker = (): Fetcher & GuideService => env.GUIDE as Fetcher & GuideService;
 
-const GUIDE_SITE = env.ENV === 'production' ? PRODUCTION_SITES.guide : NEXT_GUIDE;
+const GUIDE_SITE = Envapter.isProduction ? PRODUCTION_SITES.guide : NEXT_GUIDE;
 
 export class Search extends Plugin {
     private readonly referenceSearch = new ReferenceSearch();

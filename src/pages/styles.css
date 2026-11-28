@@ -1,0 +1,11 @@
+@import '@seedcord/ui/styles/globals.css';
+@import '@seedcord/ui/styles/poster.css';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/jetbrains-mono';
+
+@layer base {
+    body {
+        --font-display: 'Space Grotesk Variable';
+        --font-mono: 'JetBrains Mono Variable';
+    }
+}
